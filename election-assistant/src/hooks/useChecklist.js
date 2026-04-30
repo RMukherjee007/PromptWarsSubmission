@@ -9,6 +9,10 @@ const defaultTasks = [
   { id: 6, text: 'Mark your calendar for Election Day', category: 'Voting Plan' }
 ];
 
+/**
+ * Custom hook for managing the voter checklist state and persistence.
+ * @returns {Object} { tasks, toggleTask, progress, completedCount }
+ */
 export const useChecklist = () => {
   const [tasks, setTasks] = useState(() => {
     const saved = localStorage.getItem('election-tasks');
