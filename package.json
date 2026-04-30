@@ -1,0 +1,15 @@
+{
+  "name": "election-assistant-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install && cd election-assistant && npm install && cd ../election-backend && npm install",
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "dev:frontend": "cd election-assistant && npm run dev",
+    "dev:backend": "cd election-backend && npm run dev",
+    "build": "cd election-assistant && npm run build"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
