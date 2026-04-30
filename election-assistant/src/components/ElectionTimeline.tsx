@@ -1,7 +1,14 @@
 import React, { useRef, memo } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 
-const phases = [
+interface Phase {
+  id: string;
+  title: string;
+  timeframe: string;
+  description: string;
+}
+
+const phases: Phase[] = [
   { id: 'announcement', title: 'Announcement', timeframe: 'Spring - Year Before', description: 'Candidates officially announce their intention to run and begin fundraising.' },
   { id: 'primaries', title: 'Primaries & Caucuses', timeframe: 'Jan - June of Election Year', description: 'States hold elections to award delegates and narrow down the party field.' },
   { id: 'conventions', title: 'National Conventions', timeframe: 'Summer of Election Year', description: 'Parties officially nominate their candidates and finalize policy platforms.' },
@@ -11,8 +18,13 @@ const phases = [
   { id: 'inauguration', title: 'Inauguration', timeframe: 'January 20', description: 'The President-elect is officially sworn into office for a four-year term.' }
 ];
 
-const PhaseCard = memo(({ phase, index }) => {
-  const cardRef = useRef(null);
+interface PhaseCardProps {
+  phase: Phase;
+  index: number;
+}
+
+const PhaseCard: React.FC<PhaseCardProps> = memo(({ phase, index }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: cardRef,
     offset: ["0 1", "0.8 1"]
@@ -46,8 +58,8 @@ const PhaseCard = memo(({ phase, index }) => {
   );
 });
 
-const ElectionTimeline = () => {
-  const containerRef = useRef(null);
+const ElectionTimeline: React.FC = () => {
+  const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start center", "end center"]

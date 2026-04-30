@@ -1,25 +1,20 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const terms = [
-  { term: 'Absentee Ballot', definition: 'A ballot cast by a voter who is unable to go to a polling station in person.' },
-  { term: 'Ballot Measure', definition: 'A law, issue, or question that appears on a statewide or local ballot for voters to decide.' },
-  { term: 'Caucus', definition: 'A local meeting where registered members of a political party gather to vote for their preferred candidate.' },
-  { term: 'Electoral College', definition: 'A body of people representing the states of the US, who formally cast votes for the election of the president and vice president.' },
-  { term: 'Gerrymandering', definition: 'Manipulating the boundaries of an electoral constituency so as to favor one party or class.' },
-  { term: 'Incumbent', definition: 'The current holder of a political office.' },
-  { term: 'PAC (Political Action Committee)', definition: 'An organization that raises money privately to influence elections or legislation.' },
-  { term: 'Popular Vote', definition: 'The total number of individual votes cast by citizens in an election.' },
-  { term: 'Primary Election', definition: 'An election to appoint delegates to a party conference or to select the candidates for a principal election.' },
-  { term: 'Swing State', definition: 'A US state where the two major political parties have similar levels of support among voters.' }
+const glossaryItems = [
+  { term: 'Electoral College', definition: 'The process used to elect the President and Vice President of the United States.' },
+  { term: 'Swing State', definition: 'A state where the two major political parties have similar levels of support among voters.' },
+  { term: 'Primary Election', definition: 'An election that narrows the field of candidates before a general election.' },
+  { term: 'Caucus', definition: 'A meeting of supporters or members of a specific political party or movement.' },
+  { term: 'Gerrymandering', definition: 'The manipulation of boundaries to favor one party or class.' },
+  { term: 'Incumbent', definition: 'The current holder of an office or post.' }
 ];
 
-const GlossaryPage = () => {
-  const [search, setSearch] = useState('');
+const GlossaryPage: React.FC = () => {
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const filteredTerms = terms.filter(t => 
-    t.term.toLowerCase().includes(search.toLowerCase()) ||
-    t.definition.toLowerCase().includes(search.toLowerCase())
+  const filteredItems = glossaryItems.filter(item => 
+    item.term.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -27,39 +22,39 @@ const GlossaryPage = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
+        style={{ textAlign: 'center', marginBottom: '60px' }}
       >
-        <h1 className="text-gradient" style={{ fontSize: '3.5rem', marginBottom: '16px' }}>Election Glossary</h1>
-        <p style={{ color: 'var(--text-secondary)', marginBottom: '32px' }}>
-          Quick reference for common political and electoral terminology.
-        </p>
-
-        <input 
-          type="text" 
-          placeholder="Search for a term..." 
-          className="search-input"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-
-        <div className="glossary-grid">
-          <AnimatePresence>
-            {filteredTerms.map((t, i) => (
-              <motion.div
-                key={t.term}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
-                className="glass-panel glossary-card"
-              >
-                <h3 style={{ color: 'var(--accent-color)', marginBottom: '12px' }}>{t.term}</h3>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '0.9375rem', lineHeight: '1.6' }}>{t.definition}</p>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
+        <h1 className="text-gradient" style={{ fontSize: '3rem', marginBottom: '16px' }}>Election Glossary</h1>
+        <p style={{ color: 'var(--text-secondary)' }}>Master the terminology of the American democratic process.</p>
       </motion.div>
+
+      <input 
+        type="text" 
+        className="search-input" 
+        placeholder="Search terms..." 
+        style={{ margin: '0 auto 60px auto', display: 'block' }}
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+
+      <div className="glossary-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px' }}>
+        <AnimatePresence>
+          {filteredItems.map((item) => (
+            <motion.div
+              key={item.term}
+              layout
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              className="glass-panel"
+              style={{ padding: '32px' }}
+            >
+              <h3 style={{ color: 'var(--accent-color)', marginBottom: '12px' }}>{item.term}</h3>
+              <p style={{ color: 'var(--text-secondary)', lineHeight: '1.5' }}>{item.definition}</p>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </div>
     </div>
   );
 };

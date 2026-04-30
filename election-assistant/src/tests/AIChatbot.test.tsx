@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import AIChatbot from '../components/AIChatbot';
 import * as api from '../services/api';
 
@@ -20,7 +20,7 @@ describe('AIChatbot Integration', () => {
 
   it('should send a message and display the AI response', async () => {
     const mockResponse = { text: 'The Electoral College is a process...' };
-    (api.chatWithAI as any).mockResolvedValue(mockResponse);
+    (api.chatWithAI as Mock).mockResolvedValue(mockResponse);
 
     render(<AIChatbot />);
     
@@ -38,7 +38,7 @@ describe('AIChatbot Integration', () => {
   });
 
   it('should show error message on API failure', async () => {
-    (api.chatWithAI as any).mockRejectedValue(new Error('API Error'));
+    (api.chatWithAI as Mock).mockRejectedValue(new Error('API Error'));
 
     render(<AIChatbot />);
     
