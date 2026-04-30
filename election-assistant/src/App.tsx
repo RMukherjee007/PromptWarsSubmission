@@ -51,8 +51,12 @@ function App() {
       <ScrollToTop />
       <Background />
       
+      <a href="#main-content" className="skip-link">Skip to main content</a>
+
       {/* Global Progress Bar */}
       <motion.div
+        role="progressbar"
+        aria-label="Scroll Progress"
         style={{
           position: 'fixed', top: 0, left: 0, right: 0, height: '4px',
           background: 'var(--accent-color)', transformOrigin: '0%', scaleX,
@@ -63,7 +67,7 @@ function App() {
       <Navbar />
       <BackToTop />
 
-      <main>
+      <main id="main-content" role="main">
         <Suspense fallback={<PageLoader />}>
           <AnimatePresence mode="wait">
             <Routes>
@@ -81,7 +85,7 @@ function App() {
           </AnimatePresence>
         </Suspense>
 
-        <footer style={{ padding: '60px 0', textAlign: 'center', borderTop: '1px solid var(--card-border)', marginTop: '100px' }}>
+        <footer role="contentinfo" style={{ padding: '60px 0', textAlign: 'center', borderTop: '1px solid var(--card-border)', marginTop: '100px' }}>
           <div className="container">
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>
               Designed to demystify democracy. Minimalist educational platform powered by AI.
