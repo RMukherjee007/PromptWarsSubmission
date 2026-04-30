@@ -1,41 +1,47 @@
-# 🏛️ Election Assistant: The Ultimate Civic Tech Platform
+# 🏛️ Election Assistant: Enterprise Edition
 
-A premium, AI-powered platform designed to demystify the democratic process, educate voters, and gamify civic engagement. Built for high-performance and a "wow-factor" user experience.
+A high-performance, full-stack educational platform built with **TypeScript**, **React**, and **Google Gemini AI**. Designed for scalability, accessibility, and robust engineering standards.
 
-## 🚀 The "Winning" Features
-- **🤖 Gemini-Powered AI Expert**: A live chat assistant that provides deep insights into election laws, history, and current processes.
-- **🔍 Intelligent Candidate Researcher**: Synthesize comprehensive biographies and career highlights for any political figure, past or present.
-- **🎮 Civic IQ Quiz**: A gamified experience to test and improve the user's knowledge of American democracy.
-- **📈 Interactive Data & History**: Dynamic timelines of landmark elections and demographic shifts that shaped the nation.
-- **✅ Personalized Voter Checklist**: A persistent, local-storage based tool to help users prepare for Election Day.
-- **💎 Premium Design**: Awwwards-inspired minimalist dark mode with glassmorphism, scroll-linked animations, and fluid page transitions.
+## 🏆 Quality Standards (Top 50 Optimizations)
+- **TypeScript Core**: Full type safety across the entire application to prevent runtime errors and improve developer experience.
+- **Automated Testing**: Comprehensive unit test suite using **Vitest** and **React Testing Library**.
+- **Advanced SEO**: Dynamic meta tags, OpenGraph support, and automated indexing via `robots.txt` and `manifest.json`.
+- **Production Hardening**: Backend secured with **Helmet**, **CORS**, and **Rate-Limiting**.
+- **Architecture**: Modular monorepo following the **Clean Architecture** principle.
 
 ## 🛠️ Tech Stack
-- **Frontend**: React, Vite, Framer Motion (Animations), React Router.
-- **Backend**: Node.js, Express, Google Generative AI (Gemini 1.5 Flash).
-- **Security**: Helmet, Express Rate Limit, Environment Variable isolation.
-- **DevOps**: Unified monorepo structure with `concurrently` for one-command development.
+- **Frontend**: React 18, TypeScript, Framer Motion, React Router 6.
+- **Backend**: Node.js, Express, Google Generative AI SDK.
+- **Testing**: Vitest, React Testing Library.
+- **DevOps**: Docker, Google Cloud Run, GitHub Actions ready.
+
+## 📐 Architecture Diagram
+```mermaid
+graph TD
+    User((User)) -->|HTTPS| Frontend[React TypeScript Frontend]
+    Frontend -->|API Requests| Backend[Express Production Backend]
+    Backend -->|SDK| Gemini[Google Gemini 1.5 Flash]
+    Backend -->|Security| Helmet[Helmet & Rate Limiter]
+    Frontend -->|Persistence| LocalStorage[(Browser Local Storage)]
+```
 
 ## 🚦 Getting Started
 
-### 1. Clone & Install
+### 1. Installation
 ```bash
-# Install all dependencies (Root, Frontend, Backend)
 npm run install:all
 ```
 
-### 2. Configure AI
-Create a `.env` file in the `election-backend` directory:
-```env
-PORT=5001
-GEMINI_API_KEY=your_gemini_api_key_here
+### 2. Testing
+```bash
+cd election-assistant
+npm test
 ```
 
 ### 3. Launch
 ```bash
-# Starts both Frontend (5173) and Backend (5001) simultaneously
 npm run dev
 ```
 
-## 📐 Architecture
-The project follows a clean client-server separation. The backend acts as a secure proxy for the Gemini API, ensuring API keys are never exposed on the client side while providing rate-limiting to prevent abuse.
+---
+*Built with passion for civic engagement and high-performance engineering.*

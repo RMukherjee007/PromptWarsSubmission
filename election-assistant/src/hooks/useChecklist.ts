@@ -1,6 +1,13 @@
 import { useState, useEffect } from 'react';
 
-const defaultTasks = [
+interface Task {
+  id: number;
+  text: string;
+  category: string;
+  completed: boolean;
+}
+
+const defaultTasks: Omit<Task, 'completed'>[] = [
   { id: 1, text: 'Register to vote', category: 'Registration' },
   { id: 2, text: 'Check your voter registration status', category: 'Registration' },
   { id: 3, text: 'Research local and national candidates', category: 'Research' },
@@ -9,12 +16,8 @@ const defaultTasks = [
   { id: 6, text: 'Mark your calendar for Election Day', category: 'Voting Plan' }
 ];
 
-/**
- * Custom hook for managing the voter checklist state and persistence.
- * @returns {Object} { tasks, toggleTask, progress, completedCount }
- */
 export const useChecklist = () => {
-  const [tasks, setTasks] = useState(() => {
+  const [tasks, setTasks] = useState<Task[]>(() => {
     const saved = localStorage.getItem('election-tasks');
     return saved ? JSON.parse(saved) : defaultTasks.map(t => ({ ...t, completed: false }));
   });
@@ -23,7 +26,7 @@ export const useChecklist = () => {
     localStorage.setItem('election-tasks', JSON.stringify(tasks));
   }, [tasks]);
 
-  const toggleTask = (id) => {
+  const toggleTask = (id: number): void => {
     setTasks(prev => prev.map(t => 
       t.id === id ? { ...t, completed: !t.completed } : t
     ));

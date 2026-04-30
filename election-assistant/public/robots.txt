@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://election-frontend-883918498227.us-central1.run.app/sitemap.xml
